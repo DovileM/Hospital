@@ -1,22 +1,30 @@
-﻿using System;
+﻿using Hospital.Pharmacy.PharmacyFacadeService;
+using System;
 
 namespace Hospital.Pharmacy.PharmacyController
 {
     class PharmacyControllerImplementation : IPharmacyController
     {
+        IPharmacyFacade facade;
+
+        public PharmacyControllerImplementation(IPharmacyFacade facade)
+        {
+            this.facade = facade;
+        }
+
         public int AddMedicine(string name, string type, DateTime validity, int supplierID)
         {
-            return 0;
+            return facade.AddMedicine(name, type, validity, supplierID);
         }
 
         public int AddSupplier(string name, string phone, string address, string country)
         {
-            return 0;
+            return facade.AddSupplier(name, phone, address, country);
         }
 
         public string BuyMedicine(int medicineID)
         {
-            return null;
+            return facade.BuyMedicine(medicineID);
         }
     }
 }

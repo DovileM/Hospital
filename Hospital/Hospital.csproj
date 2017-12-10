@@ -96,7 +96,7 @@
     <Compile Include="Pharmacy\NaturalPharmacy\NaturalSupplier.cs" />
     <Compile Include="Pharmacy\PharmacyController\IPharmacyController.cs" />
     <Compile Include="Pharmacy\PharmacyController\PharmacyControllerImplementation.cs" />
-    <Compile Include="Pharmacy\PharmacyDomainService\IMedicininePriceCalculator.cs" />
+    <Compile Include="Pharmacy\PharmacyDomainService\IMedicinePriceCalculator.cs" />
     <Compile Include="Pharmacy\PharmacyDomainService\PVMMedicinePriceCalculator.cs" />
     <Compile Include="Pharmacy\PharmacyDomain\IMedicine.cs" />
     <Compile Include="Pharmacy\PharmacyDomain\IPharmacyFactor.cs" />
@@ -108,7 +108,6 @@
     <Compile Include="Pharmacy\PharmacyFacadeService\PharmacyFacadeImplementation.cs" />
     <Compile Include="Pharmacy\PharmacyRepository\MemoryMedicineRepository.cs" />
     <Compile Include="Pharmacy\PharmacyRepository\MemorySupplierRepository.cs" />
-    <Compile Include="Pharmacy\PharmacyUI\IPharmacyUI.cs" />
     <Compile Include="Pharmacy\PharmacyUI\PharmacyConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

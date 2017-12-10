@@ -8,14 +8,14 @@ namespace Hospital.Pharmacy.CommercialPharmacy
         public string Name { get; set; }
         public string Type { get; set; }
         public DateTime Validity { get; set; }
-        public int SupplierID { get; set; }
+        public double Price { get;}
 
-        public CommercialMedicine(string name, string type, DateTime validity, int supplierID)
+        public CommercialMedicine(string name, string type, DateTime validity, double price)
         {
             Name = name;
             Type = type;
             Validity = validity;
-            SupplierID = supplierID;
+            price = price;
         }
     }
 }

@@ -6,7 +6,6 @@ namespace Hospital.Pharmacy.PharmacyFacadeService
     {
         ISupplier GetSupplier(int id);
         void DeleteSupplier(int id);
-        void UpdateSupplier(ISupplier supplier);
         int SaveSupplier(ISupplier supplier);
     }
 }
