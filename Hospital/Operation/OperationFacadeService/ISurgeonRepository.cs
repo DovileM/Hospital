@@ -6,7 +6,6 @@ namespace Hospital.Operation.OperationFacadeService
     {
         ISurgeon GetSurgeon(int id);
         void DeleteSurgeon(int id);
-        void UpdateSurgeon(ISurgeon surgeon);
         int SaveSurgeon(ISurgeon surgeon);
     }
 }

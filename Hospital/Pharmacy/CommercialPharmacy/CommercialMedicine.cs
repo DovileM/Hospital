@@ -15,7 +15,7 @@ namespace Hospital.Pharmacy.CommercialPharmacy
             Name = name;
             Type = type;
             Validity = validity;
-            price = price;
+            Price = price;
         }
     }
 }

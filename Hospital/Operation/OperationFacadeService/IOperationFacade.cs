@@ -6,6 +6,7 @@ namespace Hospital.Operation.OperationFacadeService
     {
         DateTime GetSurgeryDate(int sergeryID);
         void CancelSurgery(int surgeryID, int surgeonID);
-        void ChangeSurgeryDate(int surgeryID, DateTime date);
+        int RegistSurgery(String type, DateTime date, String doctor, double payment);
+        int RegistSurgeon(String name, String surname, DateTime birth, String surgeryType);
     }
 }

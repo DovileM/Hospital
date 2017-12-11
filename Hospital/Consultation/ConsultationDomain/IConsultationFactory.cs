@@ -1,8 +1,10 @@
-﻿namespace Hospital.Consultation.ConsultationDomain
+﻿using System;
+
+namespace Hospital.Consultation.ConsultationDomain
 {
     interface IConsultationFactory
     {
-        void CreateDoctor();
-        void CreateClient();
+        IClient CreateClient(string name, string surname, string phone, DateTime birth);
+        IDoctor CreateDoctor(string name, string surname, DateTime startDate, DateTime birth, string cabinet);
     }
 }

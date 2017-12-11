@@ -9,6 +9,11 @@ namespace Hospital.Pharmacy.PharmacyRepository
         Dictionary<int, IMedicine> medicine;
         static int number = 0;
 
+        public MemoryMedicineRepository()
+        {
+            medicine = new Dictionary<int, IMedicine>();
+        }
+
         public void DeleteMedicine(int id)
         {
             medicine.Remove(id);

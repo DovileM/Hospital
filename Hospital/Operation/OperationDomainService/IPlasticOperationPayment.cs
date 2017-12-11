@@ -4,6 +4,6 @@ namespace Hospital.Operation.OperationDomainService
 {
     interface IPlasticOperationPayment
     {
-        void PayForPlasticOperation(ISurgeon surgeon, ISurgery surgery, double payment);
+        void PayForPlasticOperation(string doctor, double payment);
     }
 }

@@ -7,11 +7,11 @@ namespace Hospital.Pharmacy.EmailServer
     {
         public void SendEmail(string to, string message)
         {
-            Console.WriteLine("-----GOOGLE----");
+            Console.WriteLine("\n-----GOOGLE----");
             Console.WriteLine("Send to: " + to);
             Console.WriteLine("From:    " + "info@gmail.com");
             Console.WriteLine("|-| " + message + " |-|");
-            Console.WriteLine("---------------");
+            Console.WriteLine("---------------\n");
         }
     }
 }

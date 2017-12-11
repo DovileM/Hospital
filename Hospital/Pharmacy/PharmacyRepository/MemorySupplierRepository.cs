@@ -9,6 +9,11 @@ namespace Hospital.Pharmacy.PharmacyRepository
         Dictionary<int, ISupplier> supplier;
         static int number;
 
+        public MemorySupplierRepository()
+        {
+            supplier = new Dictionary<int, ISupplier>();
+        }
+
         public void DeleteSupplier(int id)
         {
             supplier.Remove(id);

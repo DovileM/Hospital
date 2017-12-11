@@ -1,33 +1,33 @@
 ﻿using Hospital.Operation.OperationFacadeService;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Hospital.Operation.OperationDomain;
 
 namespace Hospital.Operation.OperationRepository
 {
     class MemorySurgeryRepository : ISurgeryRepository
     {
+        Dictionary<int, ISurgery> surgery;
+        static int number = 0;
+
+        public MemorySurgeryRepository()
+        {
+            surgery = new Dictionary<int, ISurgery>();
+        }
+
         public void DeleteSurgery(int id)
         {
-            
+            surgery.Remove(id);
         }
 
         public ISurgery GetSurgery(int id)
         {
-            return null;
+            return surgery[id];
         }
 
-        public int SaveSurgery(ISurgery Surgery)
+        public int SaveSurgery(ISurgery surgery)
         {
-            return 0;
-        }
-
-        public void UpdateSurgery(ISurgery Surgery)
-        {
-            
+            this.surgery.Add(++number, surgery);
+            return number;
         }
     }
 }

@@ -1,29 +1,30 @@
-﻿using System;
+﻿using Hospital.Consultation.ConsultationFacadeService;
+using System;
 
 namespace Hospital.Consultation.ConsultationController
 {
     class ConsultationControllerImplementation : IConsultationController
     {
-        public int AddClient(string name, string surname, string phone, DateTime borth)
+        IConsultationFacade facade;
+
+        public ConsultationControllerImplementation(IConsultationFacade facade)
         {
-            //TO DO
-            return 0;
+            this.facade = facade;
         }
 
-        public int AddDoctor(string name, string surname, DateTime startDate, DateTime birth, string Cabinet)
+        public int AddClient(string name, string surname, string phone, DateTime birth)
         {
-            //TO DO
-            return 0;
+            return facade.AddClient(name, surname, phone, birth);
         }
 
-        public void CancelVisitation(int clientID, int doctorID, DateTime visitDate)
+        public int AddDoctor(string name, string surname, DateTime startDate, DateTime birth, string cabinet)
         {
-            //TO DO
+            return facade.AddDoctor(name, surname, startDate, birth, cabinet);
         }
 
         public void VisitDocotor(int clientID, int doctorID, DateTime visitDate)
         {
-            //TO DO
+            facade.VisitDocotor(clientID, doctorID, visitDate);
         }
     }
 }

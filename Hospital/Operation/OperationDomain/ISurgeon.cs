@@ -4,9 +4,9 @@ namespace Hospital.Operation.OperationDomain
 {
     interface ISurgeon
     {
-        string name { get; }
-        string surname { get; set; }
-        DateTime birth { get; set; }
-        string surgeryType { get; set; }
+        string Name { get; }
+        string Surname { get; set; }
+        DateTime Birth { get; set; }
+        string SurgeryType { get; set; }
     }
 }

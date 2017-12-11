@@ -1,30 +1,39 @@
 ﻿using Hospital.Consultation.ConsultationFacadeService;
 using Hospital.Consultation.ConsultationDomain;
+using System.Collections.Generic;
 
 namespace Hospital.Consultation.ConsultationRepository
 {
     class MemoryDoctorRepository : IDoctorRepository
     {
+        Dictionary<int, IDoctor> doctor;
+        static int number = 0;
+
+        public MemoryDoctorRepository()
+        {
+            doctor = new Dictionary<int, IDoctor>();
+
+        }
+
         public void DeleteDoctor(int id)
         {
-           //TO DO
+            doctor.Remove(id);
         }
 
         public IDoctor getDoctor(int id)
         {
-            //TO DO
-            return null; 
+            return doctor[id]; 
         }
 
-        public int SaveDoctor(IDoctor docotor)
+        public int SaveDoctor(IDoctor doctor)
         {
-            //TO DO
-            return 0; 
+            this.doctor.Add(++number, doctor);
+            return number; 
         }
 
-        public void UpdateDoctor(IDoctor doctor)
+        public void UpdateDoctor(int id, IDoctor doctor)
         {
-            //TO DO
+            this.doctor[id] = doctor;
         }
     }
 }

@@ -4,9 +4,9 @@ namespace Hospital.Operation.OperationDomain
 {
     interface ISurgery
     {
-        string type { get; }
-        DateTime date { get; set; }
-        string doctor { get; set; }
-        double payment { get; set; }
+        string Type { get; }
+        DateTime Date { get; set; }
+        string Doctor { get; set; }
+        double Payment { get; set; }
     }
 }

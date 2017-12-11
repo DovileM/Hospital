@@ -6,6 +6,7 @@ namespace Hospital.Operation.OperationController
     {
         DateTime GetSurgeryDate(int sergeryID);
         void CancelSurgery(int surgeryID, int surgeonID);
-        void ChangeSurgeryDate(int surgeryID, DateTime date);
+        int RegistSurgeon(string name, string surname, DateTime birth, string type);
+        int RegistSurgery(string type, DateTime date, string name, double payment);
     }
 }

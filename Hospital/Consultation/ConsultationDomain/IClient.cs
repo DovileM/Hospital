@@ -8,7 +8,5 @@ namespace Hospital.Consultation.ConsultationDomain
         string Surname { get; set; }
         string Phone { get; set; }
         DateTime Birth { get; }
-
-        bool ShoudHaveRefferal();
     }
 }
