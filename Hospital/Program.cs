@@ -33,8 +33,8 @@ namespace Hospital
         static void Main(string[] args)
         {
 
-            IContainer container = FirstConfiguration();
-            //IContainer container = SecondConfiguration();
+            //IContainer container = FirstConfiguration();
+            IContainer container = SecondConfiguration();
 
             var consultation = container.Resolve<ConsultationConsole>();
             var operation = container.Resolve<OperationConsole>();
@@ -204,7 +204,7 @@ namespace Hospital
             builder.RegisterType<OperationConsole>().AsSelf();
             builder.RegisterType<PharmacyConsole>().AsSelf();
 
-            builder.RegisterType<OperationControllerImplementation>().As<IConsultationController>();
+            builder.RegisterType<ConsultationControllerImplementation>().As<IConsultationController>();
             builder.RegisterType<ConsultationFacadeImplementation>().As<IConsultationFacade>();
             builder.RegisterType<PhysicalClientRegistration>().As<IClientRegistration>();
             builder.RegisterType<Psychologist>().As<IDoctor>();
