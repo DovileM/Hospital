@@ -6,7 +6,6 @@ namespace Hospital.Pharmacy.PharmacyFacadeService
     {
         IMedicine GetMedicine(int id);
         void DeleteMedicine(int id);
-        void UpdateMedicine(IMedicine medicine);
         int SaveMedicine(IMedicine medicine);
     }
 }

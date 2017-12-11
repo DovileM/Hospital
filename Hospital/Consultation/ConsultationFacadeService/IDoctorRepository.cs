@@ -6,7 +6,7 @@ namespace Hospital.Consultation.ConsultationFacadeService
     {
         IDoctor getDoctor(int id);
         void DeleteDoctor(int id);
-        void UpdateDoctor(IDoctor doctor);
+        void UpdateDoctor(int id, IDoctor doctor);
         int SaveDoctor(IDoctor docotor);
     }
 }

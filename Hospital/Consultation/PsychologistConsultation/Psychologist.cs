@@ -1,5 +1,6 @@
 ﻿using Hospital.Consultation.ConsultationDomain;
 using System;
+using System.Collections.Generic;
 
 namespace Hospital.Consultation.PsychologistConsultation
 {
@@ -11,6 +12,8 @@ namespace Hospital.Consultation.PsychologistConsultation
         public DateTime Birth { get; }
         public string Cabinet { get; set; }
 
+        private Dictionary<IClient, DateTime> visit;
+
         public Psychologist(string name, string surname, DateTime startDate, DateTime birth, string cabinet)
         {
             Name = name;
@@ -18,11 +21,17 @@ namespace Hospital.Consultation.PsychologistConsultation
             StartDate = startDate;
             Birth = birth;
             Cabinet = cabinet;
+            visit = new Dictionary<IClient, DateTime>();
         }
 
-        public string SendForTreatment(string sendTo)
+        public void AddVisit(IClient client, DateTime visitDate)
         {
-            return sendTo;
+            visit.Add(client, visitDate);
+        }
+
+        public void CancelVisit(IClient client)
+        {
+            visit.Remove(client);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Hospital.Consultation.ConsultationDomain
         DateTime Birth { get; }
         string Cabinet { get; set; }
 
-        string SendForTreatment(string sendTo);
+        void AddVisit(IClient client, DateTime visitDate);
+        void CancelVisit(IClient client);
     }
 }

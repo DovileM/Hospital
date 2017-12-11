@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hospital.Consultation.ConsultationDomain;
+using Hospital.Consultation.ConsultationDomainService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,26 +10,37 @@ namespace Hospital.Consultation.ConsultationFacadeService
 {
     class ConsultationFacadeImplementation : IConsultationFacade
     {
-        public int AddClient(string name, string surname, string phone, DateTime borth)
+        IDoctorRepository doctorRepo;
+        IClientRepository clientRepo;
+        IClientRegistration registation;
+        IConsultationFactory factory;
+
+        public ConsultationFacadeImplementation(IDoctorRepository doctorRepo, IClientRepository clientRepo, IClientRegistration registation, IConsultationFactory factory)
         {
-            //TO DO
-            return 0;
+            this.doctorRepo = doctorRepo;
+            this.clientRepo = clientRepo;
+            this.registation = registation;
+            this.factory = factory;
         }
 
-        public int AddDoctor(string name, string surname, DateTime startDate, DateTime birth, string Cabinet)
+        public int AddClient(string name, string surname, string phone, DateTime birth)
         {
-            //TO DO
-            return 0;
+            IClient client = factory.CreateClient(name, surname, phone, birth);
+            return clientRepo.SaveClient(client);
         }
 
-        public void CancelVisitation(int clientID, int doctorID, DateTime visitDate)
+        public int AddDoctor(string name, string surname, DateTime startDate, DateTime birth, string cabinet)
         {
-            //TO DO
+            IDoctor doctor = factory.CreateDoctor(name, surname, startDate, birth, cabinet);
+            return doctorRepo.SaveDoctor(doctor);
         }
 
         public void VisitDocotor(int clientID, int doctorID, DateTime visitDate)
         {
-            //TO DO
+            IClient client = clientRepo.GetClient(clientID);
+            IDoctor doctor = doctorRepo.getDoctor(doctorID);
+            registation.RegistClientToDoctor(client, doctor, visitDate);
+            doctorRepo.UpdateDoctor(doctorID, doctor);
         }
     }
 }

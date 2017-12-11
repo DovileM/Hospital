@@ -32,8 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Consultation\ConsultationController\ConsultationControllerImplementation.cs" />
     <Compile Include="Consultation\ConsultationController\IConsultationController.cs" />
-    <Compile Include="Consultation\ConsultationDomainService\ElectronicClientRegistration.cs" />
+    <Compile Include="Consultation\ConsultationDomainService\ElectronicClientRegistation.cs" />
     <Compile Include="Consultation\ConsultationDomainService\IClientRegistration.cs" />
     <Compile Include="Consultation\ConsultationDomainService\PhysicalClientRegistration.cs" />
     <Compile Include="Consultation\ConsultationDomain\IClient.cs" />
@@ -59,11 +66,31 @@
     <Compile Include="Consultation\ConsultationUI\ConsultationConsole.cs" />
     <Compile Include="Consultation\FamilyDoctorConsultation\FamilyDoctor.cs" />
     <Compile Include="Consultation\FamilyDoctorConsultation\FamilyDoctorClient.cs" />
-    <Compile Include="Consultation\ConsultationUI\IConsultationUI.cs" />
     <Compile Include="Consultation\FamilyDoctorConsultation\FamilyDoctorFactory.cs" />
     <Compile Include="Consultation\PsychologistConsultation\Psychologist.cs" />
     <Compile Include="Consultation\PsychologistConsultation\PsychologistClient.cs" />
     <Compile Include="Consultation\PsychologistConsultation\PsychologistConsultationFactory.cs" />
+    <Compile Include="Operation\OperationController\IOperationController.cs" />
+    <Compile Include="Operation\OperationController\OparationControllerImplementation.cs" />
+    <Compile Include="Operation\OperationDomainService\CardPlasticOperationPayment.cs" />
+    <Compile Include="Operation\OperationDomainService\CashPlasticOperationPayment.cs" />
+    <Compile Include="Operation\OperationDomainService\IPlasticOperationPayment.cs" />
+    <Compile Include="Operation\OperationDomain\IOperationFactory.cs" />
+    <Compile Include="Operation\OperationDomain\ISurgeon.cs" />
+    <Compile Include="Operation\OperationDomain\ISurgery.cs" />
+    <Compile Include="Operation\OperationFacadeService\IOperationFacade.cs" />
+    <Compile Include="Operation\OperationFacadeService\ISurgeonRepository.cs" />
+    <Compile Include="Operation\OperationFacadeService\ISurgeryRepository.cs" />
+    <Compile Include="Operation\OperationFacadeService\OperationFacadeImplementation.cs" />
+    <Compile Include="Operation\OperationRepository\MemorySurgeonRepository.cs" />
+    <Compile Include="Operation\OperationRepository\MemorySurgeryRepository.cs" />
+    <Compile Include="Operation\OperationUI\OperationConsole.cs" />
+    <Compile Include="Operation\PlasticOperation\PlasticFactory.cs" />
+    <Compile Include="Operation\PlasticOperation\PlasticSurgeon.cs" />
+    <Compile Include="Operation\PlasticOperation\PlasticSurgery.cs" />
+    <Compile Include="Operation\TreatmentOperation\TreatmentFactory.cs" />
+    <Compile Include="Operation\TreatmentOperation\TreatmentSurgeon.cs" />
+    <Compile Include="Operation\TreatmentOperation\TreatmentSurgery.cs" />
     <Compile Include="Pharmacy\CommercialPharmacy\CommercialMedicine.cs" />
     <Compile Include="Pharmacy\CommercialPharmacy\CommercialMedicinineSupplierFactory.cs" />
     <Compile Include="Pharmacy\CommercialPharmacy\CommercialSupplier.cs" />
@@ -74,7 +101,7 @@
     <Compile Include="Pharmacy\NaturalPharmacy\NaturalSupplier.cs" />
     <Compile Include="Pharmacy\PharmacyController\IPharmacyController.cs" />
     <Compile Include="Pharmacy\PharmacyController\PharmacyControllerImplementation.cs" />
-    <Compile Include="Pharmacy\PharmacyDomainService\IMedicininePriceCalculator.cs" />
+    <Compile Include="Pharmacy\PharmacyDomainService\IMedicinePriceCalculator.cs" />
     <Compile Include="Pharmacy\PharmacyDomainService\PVMMedicinePriceCalculator.cs" />
     <Compile Include="Pharmacy\PharmacyDomain\IMedicine.cs" />
     <Compile Include="Pharmacy\PharmacyDomain\IPharmacyFactor.cs" />
@@ -86,13 +113,13 @@
     <Compile Include="Pharmacy\PharmacyFacadeService\PharmacyFacadeImplementation.cs" />
     <Compile Include="Pharmacy\PharmacyRepository\MemoryMedicineRepository.cs" />
     <Compile Include="Pharmacy\PharmacyRepository\MemorySupplierRepository.cs" />
-    <Compile Include="Pharmacy\PharmacyUI\IPharmacyUI.cs" />
     <Compile Include="Pharmacy\PharmacyUI\PharmacyConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

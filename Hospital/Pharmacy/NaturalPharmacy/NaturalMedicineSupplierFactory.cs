@@ -5,14 +5,14 @@ namespace Hospital.Pharmacy.NaturalPharmacy
 {
     class NaturalMedicineSupplierFactory : IPharmacyFactor
     {
-        public void CreateMedicine()
+        public IMedicine CreateMedicine(string name, string type, DateTime validity, double price)
         {
-            
+            return (new NaturalMedicine(name, type, validity, price));
         }
 
-        public void CreateSupplier()
+        public ISupplier CreateSupplier(string name, string phone, string fullAdress)
         {
-            
+            return (new NaturalSupplier(name, phone, fullAdress));
         }
     }
 }

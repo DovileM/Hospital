@@ -18,10 +18,5 @@ namespace Hospital.Consultation.FamilyDoctorConsultation
             Phone = phone;
             Birth = birth;
         }
-
-        public bool ShoudHaveRefferal()
-        {
-            return true;
-        }
     }
 }

@@ -7,6 +7,6 @@ namespace Hospital.Pharmacy.PharmacyDomain
         string Name { get; set; }
         string Type { get; set; }
         DateTime Validity { get; set; }
-        int SupplierID { get; set; }
+        double Price { get; }
     }
 }
