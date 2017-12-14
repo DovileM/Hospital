@@ -1,8 +1,11 @@
 ﻿using Autofac;
+using Autofac.Core;
+using Hospital.Common;
 using Hospital.Consultation.ConsultationController;
 using Hospital.Consultation.ConsultationDomain;
 using Hospital.Consultation.ConsultationDomainService;
 using Hospital.Consultation.ConsultationFacadeService;
+using Hospital.Consultation.ConsultationFacadeService.ConsultationFacadeServiceInterfaces;
 using Hospital.Consultation.ConsultationRepository;
 using Hospital.Consultation.ConsultationUI;
 using Hospital.Consultation.FamilyDoctorConsultation;
@@ -33,8 +36,8 @@ namespace Hospital
         static void Main(string[] args)
         {
 
-            //IContainer container = FirstConfiguration();
-            IContainer container = SecondConfiguration();
+            IContainer container = FirstConfiguration();
+            //IContainer container = SecondConfiguration();
 
             var consultation = container.Resolve<ConsultationConsole>();
             var operation = container.Resolve<OperationConsole>();
@@ -165,7 +168,7 @@ namespace Hospital
             builder.RegisterType<PharmacyConsole>().AsSelf();
 
             builder.RegisterType<ConsultationControllerImplementation>().As<IConsultationController>();
-            builder.RegisterType<ConsultationFacadeImplementation>().As<IConsultationFacade>();
+            //builder.RegisterType<ConsultationFacadeImplementation>().As<IConsultationFacade>();
             builder.RegisterType<ElectronicClientRegistation>().As<IClientRegistration>();
             builder.RegisterType<FamilyDoctor>().As<IDoctor>();
             builder.RegisterType<FamilyDoctorClient>().As<IClient>();
@@ -192,6 +195,13 @@ namespace Hospital
             builder.RegisterType<MemorySupplierRepository>().As<ISupplierRepository>();
             builder.RegisterType<GoogleEmailServer>().As<IEmailSender>();
 
+            builder.RegisterInstance(new MailAdapter(new LocalEmailServer())).Named<IEmailSenderConsultation>("localEmailSender");
+            builder.RegisterInstance(new MailAdapter(new GoogleEmailServer())).Named<IEmailSenderConsultation>("googleEmailSender");
+
+            builder.RegisterType<ConsultationFacadeImplementation>().As<IConsultationFacade>().WithParameter(
+                (pi, ctx) => pi.ParameterType == typeof(IEmailSenderConsultation),
+                (pi, ctx) => ctx.ResolveNamed<IEmailSenderConsultation>(pi.Name));
+
             return builder.Build();
         }
 
@@ -206,6 +216,7 @@ namespace Hospital
 
             builder.RegisterType<ConsultationControllerImplementation>().As<IConsultationController>();
             builder.RegisterType<ConsultationFacadeImplementation>().As<IConsultationFacade>();
+            builder.RegisterType<MailAdapter>().As<IEmailSenderConsultation>().WithParameter(ResolvedParameter.ForNamed<IEmailSender>("local"));
             builder.RegisterType<PhysicalClientRegistration>().As<IClientRegistration>();
             builder.RegisterType<Psychologist>().As<IDoctor>();
             builder.RegisterType<PsychologistClient>().As<IClient>();
@@ -223,14 +234,16 @@ namespace Hospital
             builder.RegisterType<MemorySurgeryRepository>().As<ISurgeryRepository>();
 
             builder.RegisterType<PharmacyControllerImplementation>().As<IPharmacyController>();
-            builder.RegisterType<PharmacyFacadeImplementation>().As<IPharmacyFacade>();
+            builder.RegisterType<PharmacyFacadeImplementation>().As<IPharmacyFacade>().WithParameter(ResolvedParameter.ForNamed<IEmailSender>("google"));
             builder.RegisterType<PVMMedicinePriceCalculator>().As<IMedicinePriceCalculator>();
             builder.RegisterType<NaturalMedicine>().As<IMedicine>();
             builder.RegisterType<NaturalSupplier>().As<ISupplier>();
             builder.RegisterType<NaturalMedicineSupplierFactory>().As<IPharmacyFactor>();
             builder.RegisterType<MemoryMedicineRepository>().As<IMedicineRepository>();
             builder.RegisterType<MemorySupplierRepository>().As<ISupplierRepository>();
-            builder.RegisterType<LocalEmailServer>().As<IEmailSender>();
+
+            builder.RegisterType<LocalEmailServer>().Named<IEmailSender>("local");
+            builder.RegisterType<GoogleEmailServer>().Named<IEmailSender>("google");
 
             return builder.Build();
         }
