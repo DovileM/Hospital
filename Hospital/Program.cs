@@ -195,8 +195,12 @@ namespace Hospital
             builder.RegisterType<MemorySupplierRepository>().As<ISupplierRepository>();
             builder.RegisterType<GoogleEmailServer>().As<IEmailSender>();
 
-            builder.RegisterInstance(new MailAdapter(new LocalEmailServer())).Named<IEmailSenderConsultation>("localEmailSender");
-            builder.RegisterInstance(new MailAdapter(new GoogleEmailServer())).Named<IEmailSenderConsultation>("googleEmailSender");
+            builder.RegisterType<LocalEmailServer>().As<IEmailSender>().Named<IEmailSender>("lsender");
+            builder.RegisterType<GoogleEmailServer>().As<IEmailSender>().Named<IEmailSender>("gsender");
+            builder.RegisterType<MailAdapter>().WithParameter(ResolvedParameter.ForNamed<IEmailSender>("lsender"))
+                .As<IEmailSenderConsultation>().Named<IEmailSenderConsultation>("localEmailSender");
+            builder.RegisterType<MailAdapter>().WithParameter(ResolvedParameter.ForNamed<IEmailSender>("gsender"))
+                .As<IEmailSenderConsultation>().Named<IEmailSenderConsultation>("googleEmailSender");
 
             builder.RegisterType<ConsultationFacadeImplementation>().As<IConsultationFacade>().WithParameter(
                 (pi, ctx) => pi.ParameterType == typeof(IEmailSenderConsultation),
